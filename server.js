@@ -2,7 +2,17 @@ const express=require('express');
 const hbs =require('hbs');
 var app = express();
 
+hbs.registerPartials(__dirname+'/views/partials')
 app.set('view engine','hbs');
+
+hbs.registerHelper('getCurrentYear',()=>{
+  return new Date().getFullYear()
+});
+
+hbs.registerHelper('screamIt',(text)=>{
+  return text.toUpperCase()
+});
+
 
 app.use(express.static(__dirname+'/public'));
 var data= {
@@ -17,7 +27,8 @@ var datos=JSON.stringify(data);
 app.get('/',(req,res)=>{
 
   res.render('home.hbs', {
-    pageTitle:'Welcome to my site',
+    pageTitle:'Leos site',
+    welcomeMessage:'Welcome to my website',
     currentYear: new Date().getFullYear(),
     datos,
     data
@@ -29,6 +40,7 @@ app.get('/',(req,res)=>{
 
 app.get('/about',(req,res)=>{
   res.render('about.hbs', {
+    welcomeMessage:'Welcome to my website',
     pageTitle:'Leo`s About Page',
     currentYear: new Date().getFullYear()
 
@@ -42,4 +54,4 @@ app.get('/bad',(req,res)=>{
   });
 });
 
-app.listen(3000,()=>{console.log('Server is up in port 3000');});
+app.listen(3002,()=>{console.log('Server is up in port 3000');});

@@ -3,16 +3,16 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Help page</title>
+  <title>Header page </title>
+  <link href="./css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 <body>
-  <h1>{{pageTitle}}</h1>
+  {{> header}}
+  <p>{{screamIt welcomeMessage}}</p>
   <p>{{datos}}</p>
   <p>{{data.gustos}}</p>
 
-<footer>
- <p>Copyright {{currentYear}}</p>
-</footer>
+{{> footer}}
 
 </body>
 </html>
